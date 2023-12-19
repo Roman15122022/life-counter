@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/life-counter/static/css/main.b1ebbf74.css",
+    "main.js": "/life-counter/static/js/main.b573555f.js",
+    "index.html": "/life-counter/index.html",
+    "main.b1ebbf74.css.map": "/life-counter/static/css/main.b1ebbf74.css.map",
+    "main.b573555f.js.map": "/life-counter/static/js/main.b573555f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1ebbf74.css",
+    "static/js/main.b573555f.js"
+  ]
+}
