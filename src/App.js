@@ -18,7 +18,13 @@ export default function ValidationTextFields() {
         let age = today.getFullYear() - birthdayObj.getFullYear();
         let month = today.getMonth() - birthdayObj.getMonth();
         let day = today.getDate() - birthdayObj.getDate();
-        if (month < 0 || (month === 0 && today.getDate() < birthdayObj.getDate())) {
+        if (day < 0) {
+            const lastMonthDay = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+            day += lastMonthDay;
+            month--;
+        }
+        if (month < 0) {
+            month += 12;
             age--;
         }
         let hours = new Date().getHours();
@@ -32,7 +38,8 @@ export default function ValidationTextFields() {
         return dateRegex.test(inputDate);
     };
 
-    const showTime = () => {
+    const showTime = (e) => {
+        e.preventDefault();
         if (!error && date) {
             console.log(date);
             setEntering(false);
@@ -91,6 +98,7 @@ export default function ValidationTextFields() {
                                 '& .MuiTextField-root': {m: 1, width: '25ch'},
                             }}
                             noValidate
+                            onSubmit={(e) => showTime(e)}
                             autoComplete="off"
                         >
                             <TextField
