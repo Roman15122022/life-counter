@@ -28,8 +28,8 @@ export default function ValidationTextFields() {
             age--;
         }
         let hours = new Date().getHours();
-        let minutes = Math.floor(Math.random() * 61);
-        let seconds = Math.floor(Math.random() * 61);
+        let minutes = new Date().getMinutes();
+        let seconds = new Date().getSeconds();
         setInfo({age: age, month: month, days: day, hours: hours, minutes: minutes, seconds: seconds})
         console.log(age, month, day);
     }
