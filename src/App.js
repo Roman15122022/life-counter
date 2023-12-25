@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import {useEffect, useState} from "react";
 import './App.css'
 import {Button} from "@mui/material";
+import {useDebounce} from './hooks/useDebounce'
 
 export default function ValidationTextFields() {
     const [date, setDate] = useState('');
@@ -64,7 +65,6 @@ export default function ValidationTextFields() {
                         newHours = 0;
                         newDays++;
                     }
-                   /* if ()*/ /*Todo*/
 
                     return { ...prevInfo,days: newDays ,hours: newHours ,minutes: newMinutes, seconds: newSeconds };
                 })
@@ -72,20 +72,23 @@ export default function ValidationTextFields() {
             },1000)
         }
     }
-
-    useEffect(() => {
+    useEffect(()=>{
         if (error) {
             setOptions({variant: 'outlined', color: 'error'})
         } else {
             setOptions({variant: 'contained', color: 'primary'})
         }
-    }, [date])
+    },[setError,error])
+    const verification = useDebounce((inputValue) =>{
+        setError(!isValidDate(inputValue));
+        console.log(123);
+    },500)
 
-    const handleDateChange = (event) => {
+    const handleDateChange = (event) =>{
         const inputValue = event.target.value;
         setDate(inputValue);
-        setError(!isValidDate(inputValue));
-    };
+        verification(inputValue);
+    }
 
     return (
         <div className="App">
